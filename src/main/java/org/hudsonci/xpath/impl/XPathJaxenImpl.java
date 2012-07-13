@@ -30,7 +30,6 @@ public class XPathJaxenImpl implements XPathAPI {
   
   public XPathJaxenImpl(String expr) throws XPathException {
     this.expr = expr;
-    System.out.println("*** XPath Provider Plugin called");
   }
   
   private class VarContext implements VariableContext {
