@@ -11,7 +11,7 @@
 
     <groupId>org.hudsonci.xpath</groupId>
     <artifactId>xpath-provider</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>XPath Provider Plugin</name>
 
     <packaging>hpi</packaging>
