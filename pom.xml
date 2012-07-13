@@ -6,7 +6,7 @@
         <groupId>org.eclipse.hudson.plugins</groupId>
         <artifactId>hudson-plugin-parent</artifactId>
         <!-- which version of Hudson is this plugin built against? -->
-        <version>3.0.0-SNAPSHOT</version>
+        <version>3.0.0-M3</version>
     </parent>
 
     <groupId>org.hudsonci.xpath</groupId>
