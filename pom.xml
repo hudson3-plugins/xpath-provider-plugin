@@ -11,7 +11,7 @@
 
     <groupId>org.hudsonci.xpath</groupId>
     <artifactId>xpath-provider</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>XPath Provider Plugin</name>
     <url>http://hudson-ci.org/</url>
     <description>XPath Service Provider for Jelly</description>
