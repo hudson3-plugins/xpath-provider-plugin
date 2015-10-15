@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -17,7 +17,7 @@
     <description>XPath Service Provider for Jelly</description>
 
     <packaging>hpi</packaging>
-    
+
     <developers>
       <developer>
         <name>Bob Foster</name>
@@ -25,7 +25,7 @@
         <email>bobfoster@gmail.com</email>
       </developer>
     </developers>
-    
+
     <licenses>
         <license>
             <name>Eclipse Public License v1.0</name>
@@ -33,7 +33,7 @@
             <comments>All source code is made available under the terms of the Eclipse Public License 1.0</comments>
         </license>
     </licenses>
-  
+
     <dependencies>
         <dependency>
             <groupId>org.hudsonci.stapler</groupId>
@@ -95,11 +95,11 @@
         <dependency>
             <groupId>org.hudsonci.xpath</groupId>
             <artifactId>xpath-service</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.3</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -128,5 +128,5 @@
         <developerConnection>scm:git:git@github.com:hudson3-plugins/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/hudson3-plugins/${project.artifactId}-plugin</url>
     </scm>
-    
+
 </project>
