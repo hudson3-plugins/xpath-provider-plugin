@@ -17,14 +17,18 @@ package org.hudsonci.xpath.impl;
 
 import java.util.List;
 import org.dom4j.Node;
+import org.hudsonci.xpath.XFunctionFilter;
 import org.hudsonci.xpath.XNamespaceContext;
 import org.hudsonci.xpath.XPathAPI;
 import org.hudsonci.xpath.XPathException;
 import org.hudsonci.xpath.XVariableContext;
+import org.jaxen.Function;
+import org.jaxen.FunctionContext;
 import org.jaxen.JaxenException;
 import org.jaxen.NamespaceContext;
 import org.jaxen.UnresolvableException;
 import org.jaxen.VariableContext;
+import org.jaxen.XPathFunctionContext;
 import org.jaxen.dom4j.Dom4jXPath;
 
 /**
@@ -35,11 +39,25 @@ public class XPathJaxenImpl implements XPathAPI {
 
   private XVariableContext varContext;
   private XNamespaceContext nsContext;
+  private XFunctionFilter funFilter;
   private String expr;
   org.jaxen.XPath xpath;
   
   public XPathJaxenImpl(String expr) throws XPathException {
     this.expr = expr;
+  }
+
+  private class FunContext implements FunctionContext {
+
+    FunctionContext baseContext = XPathFunctionContext.getInstance();
+
+    public Function getFunction(String namespaceURI, String prefix, String localName) throws UnresolvableException {
+        if (!funFilter.accept(namespaceURI, prefix, localName)) {
+            throw new UnresolvableException("Illegal function: "+localName);
+        }
+        return baseContext.getFunction(namespaceURI, prefix, localName);
+    }
+      
   }
   
   private class VarContext implements VariableContext {
@@ -76,6 +94,8 @@ public class XPathJaxenImpl implements XPathAPI {
           xpath.setVariableContext(new VarContext());
         if (nsContext != null)
           xpath.setNamespaceContext(new NSContext());
+        if (funFilter != null)
+          xpath.setFunctionContext(new FunContext());
       } catch (JaxenException ex) {
         throw new XPathException(ex);
       }
@@ -97,6 +117,14 @@ public class XPathJaxenImpl implements XPathAPI {
   
   public XNamespaceContext getNamespaceContext() {
     return nsContext;
+  }
+  
+  public void setFunctionFilter(XFunctionFilter filter) {
+    funFilter = filter;
+  }
+
+  public XFunctionFilter getFunctionFilter() {
+    return funFilter;
   }
   
   private Node getNode(Object xpathContext) throws XPathException {
